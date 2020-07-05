@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="outsystems-plugin-intents"
+        version="0.0.1">
+
+  <name>Siri Intents Extension</name>
+  <author>André Grillo</author>
+
+  <description>
+    Adds a Siri Intent extension target to your cordova project.
+  </description>
+
+  <engines>
+    <engine name="cordova" version="&gt;=7.1.0"/>
+  </engines>
+
+  <platform name="ios">
+    <!-- <dependency id="cordova-plugin-add-swift-support" 
+                    url="https://github.com/agoncalvesos/cordova-plugin-add-swift-support.git#2.0.3-OS" />
+
+    <config-file parent="/*" target="config.xml">
+      <feature name="KeychainSharing">
+        <param name="ios-package" value="KeychainSharing"/>
+      </feature>
+    </config-file>
+    -->
+
+    <config-file target="config.xml" parent="/*"></config-file>
+
+    <config-file parent="com.apple.security.application-groups" target="*-Debug.plist">
+      <array>
+        <string>group.__APP_IDENTIFIER__</string>
+      </array>
+    </config-file>
+    <config-file parent="com.apple.security.application-groups" target="*-Release.plist">
+      <array>
+        <string>group.__APP_IDENTIFIER__</string>
+      </array>
+    </config-file>
+
+    <!-- Adding Node Dependencies -->
+    <hook type="before_plugin_install" src="hooks/NodeDependencies/installDependencies.js"/>
+
+    <!-- Adding Plugin Resources Folders to www folder -->
+    <hook type="before_plugin_install" src="hooks/copyResourceFiles.js"/>
+
+    <!-- Adding Provisioning Profiles -->
+    <hook type="before_plugin_install" src="hooks/provProfiles/copyAndUnzipProvisioningProfiles.js"/>
+    <hook type="after_plugin_install" src="hooks/provProfiles/copyProvisioningProfiles.js"/>
+    <hook type="before_plugin_install" src="hooks/provProfiles/updateExtensionXcconfig.js"/>
+
+    <!-- Copying Intent (second target) -->
+    <hook type="after_plugin_install" src="hooks/prerequisites.js"/>
+    <hook type="after_plugin_install" src="hooks/copyExtensionFolderToIosProjectFolder.js"/>
+    <hook type="after_plugin_install" src="hooks/addIntentToProject.js"/>
+    <hook type="after_plugin_install" src="hooks/fixAppEntitlements.js"/>
+    
+    <!-- Copying KeychainWrapper Class
+    <header-file src="src/ios/NSDictionary+KeychainWrapper.h" />
+    <source-file src="src/ios/NSDictionary+KeychainWrapper.m" />-->
+    
+  </platform>
+</plugin>
