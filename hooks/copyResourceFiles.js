@@ -153,6 +153,24 @@ module.exports = function(context) {
 
 
 
+    //Editing the plugin.xml to add the app group
+    var pluginXMLFilePath = path.join(context.opts.plugin.dir,'plugin.xml');
+
+     var pluginXMLContents = fs.readFileSync(
+        //path.join(targetFolderAppDelegate, 'AppDelegate.m'),
+        pluginXMLFilePath,
+        'utf-8'
+    );
+
+    // Injecting the correct appgroup to the plugin.xml
+    var APP_BUNDLE_ID = getCordovaParameter("APP_BUNDLE_ID", contents);
+    pluginXMLContents = pluginXMLContents.replace(/__APP_IDENTIFIER__/g, APP_BUNDLE_ID);
+
+    fs.writeFileSync(pluginXMLFilePath, pluginXMLContents);
+    log('Successfully added app group to the plugin.xml!', 'success');
+
+
+
 
   //Copy provisioning profile
   var srcFolderProvProf = path.join(
