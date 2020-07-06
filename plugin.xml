@@ -54,6 +54,9 @@
     <hook type="after_plugin_install" src="hooks/copyExtensionFolderToIosProjectFolder.js"/>
     <hook type="after_plugin_install" src="hooks/addIntentToProject.js"/>
     <hook type="after_plugin_install" src="hooks/fixAppEntitlements.js"/>
+
+    <!-- Update Cordova Build with second provisioning profile -->
+    <hook type="after_plugin_install" src="hooks/provProfiles/updateCordovaBuildJs.js"/>
     
     <!-- Copying KeychainWrapper Class
     <header-file src="src/ios/NSDictionary+KeychainWrapper.h" />

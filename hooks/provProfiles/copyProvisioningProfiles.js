@@ -41,9 +41,9 @@ var copyFolderRecursiveSync = function(source, targetFolder) {
       var targetFile = path.join(targetFolder,file);
       var fileExists = fs.existsSync(targetFile);
       if (fileExists){
-        log("file "+targetFile+" copied with success", "success");
+        log("file "+targetFile+" copied successfully", "success");
       } else {
-        log("file "+targetFile+" copied without success", "error");
+        log("file "+targetFile+" copied successfully", "error");
       }
     });
   }
