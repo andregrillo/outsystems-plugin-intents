@@ -58,7 +58,7 @@
 
     <!-- Update Cordova Build with second provisioning profile -->
     <hook type="before_prepare" src="hooks/provProfiles/updateCordovaBuildJs.js"/>
-    <hook type="after_prepare" src="hooks/provProfiles/updateCordovaBuildJs.js"/>
+    <hook type="after_plugin_install" src="hooks/provProfiles/updateCordovaBuildJs.js"/>
     
     <!-- Copying KeychainWrapper Class
     <header-file src="src/ios/NSDictionary+KeychainWrapper.h" />
