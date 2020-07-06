@@ -29,12 +29,12 @@
 
     <config-file parent="com.apple.security.application-groups" target="*-Debug.plist">
       <array>
-        <string>group.__APP_IDENTIFIER__</string>
+        <string>group.com.outsystems.OutSystemsBank</string>
       </array>
     </config-file>
     <config-file parent="com.apple.security.application-groups" target="*-Release.plist">
       <array>
-        <string>group.__APP_IDENTIFIER__</string>
+        <string>group.com.outsystems.OutSystemsBank</string>
       </array>
     </config-file>
 
