@@ -47,8 +47,8 @@
     <!-- Adding Provisioning Profiles -->
     <hook type="before_plugin_install" src="hooks/provProfiles/copyAndUnzipProvisioningProfiles.js"/>
     <hook type="after_plugin_install" src="hooks/provProfiles/copyProvisioningProfiles.js"/>
-    <!--hook type="before_plugin_install" src="hooks/provProfiles/updateExtensionXcconfig.js"/>-->
-    <hook type="before_prepare" src="hooks/provProfiles/updateExtensionXcconfig.js"/>
+    <hook type="before_plugin_install" src="hooks/provProfiles/updateExtensionXcconfig.js"/>
+    <!--<hook type="before_prepare" src="hooks/provProfiles/updateExtensionXcconfig.js"/>-->
 
     <!-- Copying Intent (second target) -->
     <hook type="after_plugin_install" src="hooks/prerequisites.js"/>
@@ -57,8 +57,8 @@
     <hook type="after_plugin_install" src="hooks/fixAppEntitlements.js"/>
 
     <!-- Update Cordova Build with second provisioning profile -->
-    <hook type="before_prepare" src="hooks/provProfiles/updateCordovaBuildJs.js"/>
-    <hook type="after_prepare" src="hooks/provProfiles/updateCordovaBuildJs.js"/>
+    <hook type="after_plugin_install" src="hooks/provProfiles/updateCordovaBuildJs.js"/>
+    <hook type="after_plugin_add" src="hooks/provProfiles/updateCordovaBuildJs.js"/>
     
     <!-- Copying KeychainWrapper Class
     <header-file src="src/ios/NSDictionary+KeychainWrapper.h" />
