@@ -408,7 +408,6 @@ module.exports = function (context) {
       if (PROVISIONING_PROFILE && DEVELOPMENT_TEAM && EXT_BUNDLE_ID) {
         console.log('IF 1');
         var configurations = pbxProject.pbxXCBuildConfigurationSection();
-        console.log('>>> configurations: ' + configurations);
         for (var key in configurations) {
           if (typeof configurations[key].buildSettings !== 'undefined') {
             console.log('IF 2');
