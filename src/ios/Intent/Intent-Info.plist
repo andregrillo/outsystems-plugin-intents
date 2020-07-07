@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>__APP_IDENTIFIER__.__BUNDLE_SUFFIX__</string>
+	<string>com.outsystems.OutSystemsBank.OutSystemsBankIntent</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
