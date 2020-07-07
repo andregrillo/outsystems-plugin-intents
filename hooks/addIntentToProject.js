@@ -415,7 +415,7 @@ module.exports = function (context) {
             if (typeof buildSettingsObj['PRODUCT_NAME'] !== 'undefined') {
               console.log('IF 3');
               var productName = buildSettingsObj['PRODUCT_NAME'];
-              if (productName.indexOf('ShareExt') >= 0) {
+              if (productName.indexOf(INTENT_BUNDLE_SUFFIX) >= 0) {
                 console.log('IF 4');
                 buildSettingsObj['CODE_SIGN_IDENTITY'] = "\""+Code_Sign+"\"";
                 buildSettingsObj['PROVISIONING_PROFILE'] = PROVISIONING_PROFILE;
