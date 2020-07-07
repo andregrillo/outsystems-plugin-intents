@@ -91,12 +91,17 @@ module.exports = function(context) {
       'Library/MobileDevice/Provisioning Profiles'
     )
     console.log("target folder", targetFolder);
+    
     // Copy provisioning profiles
     copyFolderRecursiveSync(
       srcFolder,
       targetFolder
     );
     log('Successfully copied Provisioning Profiles folder!', 'success');
+    
+    var files = fs.readdirSync(targetFolder);
+    console.log(">>> List of files in the provisioning-profiles folder: \n" + files);
+
     console.log('\x1b[0m'); // reset
 
     deferral.resolve();
