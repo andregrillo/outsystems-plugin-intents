@@ -401,7 +401,7 @@ module.exports = function (context) {
       var DEVELOPMENT_TEAM = getCordovaParameter('DEVELOPMENT_TEAM', contents);
       var APP_BUNDLE_ID = getCordovaParameter('APP_BUNDLE_ID', contents);
       var INTENT_BUNDLE_SUFFIX = getCordovaParameter('INTENT_BUNDLE_SUFFIX', contents);
-      var EXT_BUNDLE_ID = APP_BUNDLE_ID + INTENT_BUNDLE_SUFFIX;
+      var EXT_BUNDLE_ID = APP_BUNDLE_ID + '.' + INTENT_BUNDLE_SUFFIX;
       console.log('EXT_BUNDLE_ID: ' + EXT_BUNDLE_ID);
       var Code_Sign = getCordovaParameter("CERTIFICATE_TYPE", contents);
 
