@@ -88,7 +88,7 @@ module.exports = function(context) {
 
     fs.writeFileSync(projectFileJsPath,projectFileJsContent);
 
-    console.log(">>> build.js:\n" + projectFileJsContent + '\n');
+    //console.log(">>> build.js:\n" + projectFileJsContent + '\n');
 
     log('Successfully edited build.js', 'success');
 }
