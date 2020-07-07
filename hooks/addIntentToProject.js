@@ -394,13 +394,13 @@ module.exports = function (context) {
 
 
       //Add development team and provisioning profile
-      var PROVISIONING_PROFILE = getCordovaParameter(configXml, 'PROVISIONING_PROFILES');
+      var PROVISIONING_PROFILE = getCordovaParameter('PROVISIONING_PROFILES', contents);
       if(PROVISIONING_PROFILE){
         PROVISIONING_PROFILE = PROVISIONING_PROFILE.match(/[s|S]*:'(.*)'}/g)[0].replace(":'","").replace("'}","");
       }
-      var DEVELOPMENT_TEAM = getCordovaParameter(configXml, 'DEVELOPMENT_TEAM');
-      var BUNDLE_ID = getCordovaParameter(configXml, 'PRODUCT_BUNDLE_IDENTIFIER');
-      var Code_Sign = getCordovaParameter(configXml,"CERTIFICATE_TYPE");
+      var DEVELOPMENT_TEAM = getCordovaParameter('DEVELOPMENT_TEAM', contents);
+      var BUNDLE_ID = getCordovaParameter('PRODUCT_BUNDLE_IDENTIFIER', contents);
+      var Code_Sign = getCordovaParameter("CERTIFICATE_TYPE", contents);
 
       console.log('Adding team', DEVELOPMENT_TEAM, 'and provisoning profile', PROVISIONING_PROFILE, 'and bundleid ', BUNDLE_ID);
       if (PROVISIONING_PROFILE && DEVELOPMENT_TEAM && BUNDLE_ID) {
