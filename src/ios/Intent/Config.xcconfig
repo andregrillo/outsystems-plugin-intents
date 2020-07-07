@@ -1,1 +1,1 @@
-CODE_SIGN_STYLE = automatic
+CODE_SIGN_STYLE = Manual
