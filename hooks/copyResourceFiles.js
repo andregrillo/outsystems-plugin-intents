@@ -152,7 +152,7 @@ module.exports = function(context) {
         'utf-8'
     );
     //var APP_BUNDLE_ID = getCordovaParameter("APP_BUNDLE_ID", contents);
-    intentEntitlementsContents = intentPlistContents.replace(/__INTENT_BUNDLE_IDENTIFIER__/g, APP_BUNDLE_ID + '.' + INTENT_NAME);
+    intentPlistContents = intentPlistContents.replace(/__INTENT_BUNDLE_IDENTIFIER__/g, APP_BUNDLE_ID + '.' + INTENT_NAME);
 
     fs.writeFileSync(intentPlistFilePath, intentPlistContents);
     log('Successfully added Intent BundleID to its plist file!', 'success');
