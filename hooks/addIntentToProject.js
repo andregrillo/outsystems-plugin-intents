@@ -399,11 +399,14 @@ module.exports = function (context) {
         PROVISIONING_PROFILE = PROVISIONING_PROFILE.match(/[s|S]*:'(.*)'}/g)[0].replace(":'","").replace("'}","");
       }
       var DEVELOPMENT_TEAM = getCordovaParameter('DEVELOPMENT_TEAM', contents);
-      var BUNDLE_ID = getCordovaParameter('PRODUCT_BUNDLE_IDENTIFIER', contents);
+      var APP_BUNDLE_ID = getCordovaParameter('APP_BUNDLE_ID', contents);
+      var INTENT_BUNDLE_SUFFIX = getCordovaParameter('INTENT_BUNDLE_SUFFIX', contents);
+      var EXT_BUNDLE_ID = APP_BUNDLE_ID + INTENT_BUNDLE_SUFFIX;
+      console.log('EXT_BUNDLE_ID: ' + EXT_BUNDLE_ID);
       var Code_Sign = getCordovaParameter("CERTIFICATE_TYPE", contents);
 
-      console.log('Adding team', DEVELOPMENT_TEAM, 'and provisoning profile', PROVISIONING_PROFILE, 'and bundleid ', BUNDLE_ID);
-      if (PROVISIONING_PROFILE && DEVELOPMENT_TEAM && BUNDLE_ID) {
+      console.log('Adding team', DEVELOPMENT_TEAM, 'and provisoning profile', PROVISIONING_PROFILE, 'and bundleid ', EXT_BUNDLE_ID);
+      if (PROVISIONING_PROFILE && DEVELOPMENT_TEAM && EXT_BUNDLE_ID) {
         var configurations = pbxProject.pbxXCBuildConfigurationSection();
         for (var key in configurations) {
           if (typeof configurations[key].buildSettings !== 'undefined') {
@@ -414,7 +417,7 @@ module.exports = function (context) {
                 buildSettingsObj['CODE_SIGN_IDENTITY'] = "\""+Code_Sign+"\"";
                 buildSettingsObj['PROVISIONING_PROFILE'] = PROVISIONING_PROFILE;
                 buildSettingsObj['DEVELOPMENT_TEAM'] = DEVELOPMENT_TEAM;
-                buildSettingsObj['PRODUCT_BUNDLE_IDENTIFIER'] = BUNDLE_ID;
+                buildSettingsObj['PRODUCT_BUNDLE_IDENTIFIER'] = EXT_BUNDLE_ID;
                 console.log('Added signing identities for extension!');
               }
             }
