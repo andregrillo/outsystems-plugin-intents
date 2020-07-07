@@ -143,13 +143,25 @@ module.exports = function(context) {
 
 
 
-    //Renames the NSExtensionPrincipalClass intent in the Intent-Info.plist
+    //Adding the Intent BundleID to its plist file
     var intentPlistFilePath = path.join(intentTargetFolder,'Intent-Info.plist');
-    
+
+     var intentPlistContents = fs.readFileSync(
+        //path.join(targetFolderAppDelegate, 'AppDelegate.m'),
+        intentPlistFilePath,
+        'utf-8'
+    );
+    //var APP_BUNDLE_ID = getCordovaParameter("APP_BUNDLE_ID", contents);
+    intentEntitlementsContents = intentPlistContents.replace(/__INTENT_BUNDLE_IDENTIFIER__/g, APP_BUNDLE_ID + '.' + INTENT_NAME);
+
+    fs.writeFileSync(intentPlistFilePath, intentPlistContents);
+    log('Successfully added Intent BundleID to its plist file!', 'success');
+
+    //Renames Intent-Info.plist
     var intentTargetPlistFilePath = path.join(intentTargetFolder, INTENT_NAME + '-Info.plist');
     fs.rename(intentPlistFilePath, intentTargetPlistFilePath, function(err) {
         if ( err ) log('ERROR: ' + err, 'error');
-    });    
+    });
 
 
 
@@ -163,7 +175,7 @@ module.exports = function(context) {
     );
 
     // Injecting the correct appgroup to the plugin.xml
-    var APP_BUNDLE_ID = getCordovaParameter("APP_BUNDLE_ID", contents);
+    //var APP_BUNDLE_ID = getCordovaParameter("APP_BUNDLE_ID", contents);
     pluginXMLContents = pluginXMLContents.replace(/__APP_IDENTIFIER__/g, APP_BUNDLE_ID);
 
     fs.writeFileSync(pluginXMLFilePath, pluginXMLContents);
