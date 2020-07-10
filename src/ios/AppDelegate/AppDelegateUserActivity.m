@@ -12,12 +12,12 @@ continueUserActivity:(NSUserActivity *)userActivity
         [self storeOperationToKeychain:operation];
         
         //Notification to be removed
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message directly from Siri!"
-                                                        message:[NSString stringWithFormat:@"Your last operation was a %@ of %.2f€ to %@", type, amount, payee]
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [alert show];
+        //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message directly from Siri!"
+        //                                                message:[NSString stringWithFormat:@"Your last operation was a %@ of %.2f€ to %@", type, amount, payee]
+        //                                                 delegate:nil
+        //                                        cancelButtonTitle:@"OK"
+        //                                        otherButtonTitles:nil];
+        //[alert show];
     }
     
     else if ([userActivity.activityType isEqual: @"__APP_BUNDLE_ID__.SiriRequest"]) {
@@ -30,12 +30,12 @@ continueUserActivity:(NSUserActivity *)userActivity
         [self storeOperationToKeychain:operation];
         
         //Notification to be removed
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message directly from Siri!"
-                                                        message:[NSString stringWithFormat:@"Your last operation was a %@ of %.2f€ from %@", type, amount, payer]
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [alert show];
+        //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message directly from Siri!"
+        //                                                message:[NSString stringWithFormat:@"Your last operation was a %@ of %.2f€ from %@", type, amount, payer]
+        //                                                 delegate:nil
+        //                                        cancelButtonTitle:@"OK"
+        //                                        otherButtonTitles:nil];
+        //[alert show];
     }
     else {
         NSLog(@"The UserActivity received from Siri is invalid");
