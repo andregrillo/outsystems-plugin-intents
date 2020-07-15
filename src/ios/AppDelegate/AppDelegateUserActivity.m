@@ -45,9 +45,9 @@ continueUserActivity:(NSUserActivity *)userActivity
 }
 
 - (void)storeOperationToUserDefaults:(NSDictionary *)dict{
-    [[NSUserDefaults standardUserDefaults] setObject:dict[@"amount"] forKey:@"amount"];
-    [[NSUserDefaults standardUserDefaults] setObject:dict[@"type"] forKey:@"type"];
-    [[NSUserDefaults standardUserDefaults] setObject:dict[@"contact"] forKey:@"contact"];
+    [[NSUserDefaults standardUserDefaults] setDouble:dict[@"amount"] forKey:@"amount"];
+    [[NSUserDefaults standardUserDefaults] setValue:dict[@"type"] forKey:@"type"];
+    [[NSUserDefaults standardUserDefaults] setValue:dict[@"contact"] forKey:@"contact"];
 }
 
 - (void)storeOperationToKeychain:(NSDictionary *)dict{
