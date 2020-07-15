@@ -45,7 +45,7 @@ continueUserActivity:(NSUserActivity *)userActivity
 }
 
 - (void)storeOperationToUserDefaults:(NSDictionary *)dict{
-    [[NSUserDefaults standardUserDefaults] setDouble:dict[@"amount"] forKey:@"amount"];
+    [[NSUserDefaults standardUserDefaults] setDouble:[dict[@"amount"] doubleValue] forKey:@"amount"];
     [[NSUserDefaults standardUserDefaults] setValue:dict[@"type"] forKey:@"type"];
     [[NSUserDefaults standardUserDefaults] setValue:dict[@"contact"] forKey:@"contact"];
 }
