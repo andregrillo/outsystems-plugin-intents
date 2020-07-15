@@ -48,9 +48,9 @@ continueUserActivity:(NSUserActivity *)userActivity
     NSString *type = dict[@"type"];
     NSString *contact = dict[@"contact"];
     
-    [[NSUserDefaults standardUserDefaults] setDouble:[dict[@"amount"] doubleValue] forKey:@"amount"];
     [[NSUserDefaults standardUserDefaults] setObject:type forKey:@"type"];
     [[NSUserDefaults standardUserDefaults] setObject:contact forKey:@"contact"];
+    [[NSUserDefaults standardUserDefaults] setDouble:[dict[@"amount"] doubleValue] forKey:@"amount"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
