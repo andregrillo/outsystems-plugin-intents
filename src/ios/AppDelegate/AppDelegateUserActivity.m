@@ -2,46 +2,52 @@
 continueUserActivity:(NSUserActivity *)userActivity
  restorationHandler:(void (^)(NSArray<id<UIUserActivityRestoring>> *restorableObjects))restorationHandler {
     
-    if ([userActivity.activityType isEqual: @"__APP_BUNDLE_ID__.SiriTransfer"]) {
+    if ([userActivity.activityType isEqual: @"com.outsystems.OutSystemsBank.SiriTransfer"]) {
         double amount = [[userActivity.userInfo valueForKey:@"amount"] doubleValue];
         NSString *type = [userActivity.userInfo valueForKey:@"type"];
         NSString *payee = [userActivity.userInfo valueForKey:@"payee"];
         
-        NSDictionary *operation = [NSDictionary dictionaryWithObjectsAndKeys:type,@"type",[NSNumber numberWithDouble:amount],@"amount",payee,@"payee", nil];
+        NSDictionary *operation = [NSDictionary dictionaryWithObjectsAndKeys:type,@"type",[NSNumber numberWithDouble:amount],@"amount",payee,@"contact", nil];
 
-        [self storeOperationToKeychain:operation];
+        [self storeOperationToUserDefaults:operation];
         
         //Notification to be removed
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message directly from Siri!"
-                                                        message:[NSString stringWithFormat:@"Your last operation was a %@ of %.2f€ to %@", type, amount, payee]
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message directly from Siri!"
+//                                                        message:[NSString stringWithFormat:@"Your last operation was a %@ of %.2f€ to %@", type, amount, payee]
+//                                                         delegate:nil
+//                                                cancelButtonTitle:@"OK"
+//                                                otherButtonTitles:nil];
+//        [alert show];
     }
     
-    else if ([userActivity.activityType isEqual: @"__APP_BUNDLE_ID__.SiriRequest"]) {
+    else if ([userActivity.activityType isEqual: @"com.outsystems.OutSystemsBank.SiriRequest"]) {
         double amount = [[userActivity.userInfo valueForKey:@"amount"] doubleValue];
         NSString *type = [userActivity.userInfo valueForKey:@"type"];
         NSString *payer = [userActivity.userInfo valueForKey:@"payer"];
         
-        NSDictionary *operation = [NSDictionary dictionaryWithObjectsAndKeys:type,@"type",[NSNumber numberWithDouble:amount],@"amount",payer,@"payer", nil];
+        NSDictionary *operation = [NSDictionary dictionaryWithObjectsAndKeys:type,@"type",[NSNumber numberWithDouble:amount],@"amount",payer,@"contact", nil];
 
-        [self storeOperationToKeychain:operation];
+        [self storeOperationToUserDefaults:operation];
         
         //Notification to be removed
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message directly from Siri!"
-                                                        message:[NSString stringWithFormat:@"Your last operation was a %@ of %.2f€ from %@", type, amount, payer]
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-        [alert show];
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message directly from Siri!"
+//                                                        message:[NSString stringWithFormat:@"Your last operation was a %@ of %.2f€ from %@", type, amount, payer]
+//                                                         delegate:nil
+//                                                cancelButtonTitle:@"OK"
+//                                                otherButtonTitles:nil];
+//        [alert show];
     }
     else {
         NSLog(@"The UserActivity received from Siri is invalid");
     }
     
     return YES;
+}
+
+- (void)storeOperationToUserDefaults:(NSDictionary *)dict{
+    [[NSUserDefaults standardUserDefaults] setObject:dict[@"amount"] forKey:@"amount"];
+    [[NSUserDefaults standardUserDefaults] setObject:dict[@"type"] forKey:@"type"];
+    [[NSUserDefaults standardUserDefaults] setObject:dict[@"contact"] forKey:@"contact"];
 }
 
 - (void)storeOperationToKeychain:(NSDictionary *)dict{
