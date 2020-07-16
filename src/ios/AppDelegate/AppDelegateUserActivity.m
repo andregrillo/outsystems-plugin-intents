@@ -48,10 +48,9 @@ continueUserActivity:(NSUserActivity *)userActivity
     NSString *type = dict[@"type"];
     NSString *contact = dict[@"contact"];
     
-    [[NSUserDefaults standardUserDefaults] setValue:type forKey:@"operationType"];
+    [[NSUserDefaults standardUserDefaults] setObject:type forKey:@"operationType"];
     [[NSUserDefaults standardUserDefaults] setObject:contact forKey:@"operationContact"];
     [[NSUserDefaults standardUserDefaults] setDouble:[dict[@"amount"] doubleValue] forKey:@"operationAmount"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)storeOperationToKeychain:(NSDictionary *)dict{
