@@ -4,75 +4,33 @@ This plugin extends your ios project by parsing and modifying the project.pbxpro
 
 ## Usage
 
-### 1. Provisioning profiles
+### 1. Provisioning profile
 * Create an exclusive new provisioning profile for the ios intent target.
-* Once it's created, download it, rename the file with its own UUID number (preserve the file extension) and zip it with the following name: 
+* Once it's created, download it, rename the file using its own UUID number as the file name (preserving the file extension) and zip it with the following name: 
 * provisioning-profiles.zip
 * Then move the zip file to the "src/ios/provisioning-profiles" folder
 
 ### 2. Install the plugin
-* `cordova plugin add https://github.com/andregrillo/outsystems-plugin-intents.git --nofetch --verbose`
+* For installing the plugin you must provide the following initial variables: 
+
+INTENT_NAME => The ID name for the Plugin Intent (eg. "MyAppIntent" 
+INTENT_BUNDLE_SUFFIX => The Intent's bundle suffix. We suggest using the same string as the INTENT_NAME (eg: "MyAppIntent") 
+PROVISIONING_PROFILES => You must provide the App Bundle ID used for the mais project + the INTENT_NAME + the provisioning profile UUID:
+{'com.mycompany.MyApp.MyAppIntent':'e062de98-e4bd-44b6-bf45-75f3b30adaf2'}" 
+DEVELOPMENT_TEAM => The development team string (related to your Apple ID) being used (eg. "84FAZ4VLW6")
+CERTIFICATE_TYPE => The certificate type being used (eg. "Apple Development")
+EXTENSION_NAME => We also suggest using the same string as the INTENT_NAME (eg. "MyAppIntent")
+APP_BUNDLE_ID => The Bundle ID being used for the main app (eg. "com.mycompany.MyApp")
+
+
+* For installing`cordova plugin add https://github.com/andregrillo/outsystems-plugin-intents.git`
 * This will not modify anything yet because the hooks only run `after_platform_add`
 * You can add variables to your `config.xml` in order to change some of the settings:
 
-| Variable | Default | Description |
-|-|-|-|
-|WIDGET_PATH| `/www` | Path to the folder that contains your widget folder relative to the project root |
-|WIDGET_NAME| <Name of main project> Widget | Name of your widget |
-|WIDGET_BUNDLE_SUFFIX| widget | The last part of the widget bundle id |
-|ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES| YES | You might have to turn this off (change to NO) if you use other swift based plugins (such as cordova-plugin-geofence) |
-
-This can be done either manually in the config.xml after installing the plugin, or be done through the CLI.
 
 #### Example:
 
-In the config.xml
-
 ```
-<plugin name="outsystems-plugin-intents" spec="https://github.com/Triggi/outsystems-plugin-intents.git">
-  <variable name="WIDGET_NAME" value="NowWidget" />
-  <variable name="ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES" value="NO" />
-</plugin>
+cordova plugin add https://github.com/andregrillo/outsystems-plugin-intents.git --variable INTENT_NAME="MyAppIntent" --variable INTENT_BUNDLE_SUFFIX="MyAppIntent" --variable PROVISIONING_PROFILES="{'com.mycompany.MyApp.MyAppIntent':'e062de98-e4bd-44b6-bf45-75f3b30adaf2'}" --variable DEVELOPMENT_TEAM="84FAZ4VLW6" --variable CERTIFICATE_TYPE="Apple Development" --variable EXTENSION_NAME="MyAppIntent" --variable APP_BUNDLE_ID="com.mycompany.MyApp"
 ```
 
-Directly through CLI:
-
-```
-cordova plugin add outsystems-plugin-intents --variable WIDGET_NAME="NowWidget" --variable ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES="NO"
-```
-
-### 3. Parametrization
-Especially for automated builds, parametrization is an important part. The following parameters are available:
-
-| Variable | Example | Description |
-|-|-|-|
-|\_\_DISPLAY_NAME__| AppName | Name of the original app |
-|\_\_APP_IDENTIFIER__| com.company.app | Bundle ID of the main app |
-|\_\_BUNDLE_SUFFIX__| widget | Bundle ID suffix for the widget |
-|\_\_BUNDLE_SHORT_VERSION_STRING__| 1.0.0 | The version of the main app in form MAJOR.MINOR.PATCH |
-|\_\_BUNDLE_VERSION__| 1234 | The build number of the main app
-
-These parameters are available in available in any `.plist` or `.entitlements` files.
-
-#### Examples for usage:
-To keep the app and widget in sync use the following settings
-
-`Widget-Info.plist`:
-* Bundle display name: \_\_DISPLAY_NAME__
-* Bundle identifier: \_\_APP\_IDENTIFIER__.\_\_BUNDLE\_SUFFIX__
-* Bundle version string, short: \_\_BUNDLE_SHORT_VERSION_STRING__
-* Bundle version: \_\_BUNDLE_VERSION__
-
-`Widget.entitlements`:
-* App Groups -> Item 0: group.\_\_APP_IDENTIFIER__
-
-### Infos
-* I only tested the plugin with cordova 7.0.1 and cordova-ios 4.4.0 up to now, but it should work with other versions too.
-* I used XCode 8.3.2 to create the widget alongside with the plugin.
-* You have to add the app group entitlement to your host app too and you have to recreate your provisioning profiles with the app-group entitlement added if you want to use shared user defaults.
-* Don't forget to copy the widgets folder from `platforms/ios` to your source folder every time you modify it, otherwise your changes will be lost after you remove the platform.
-
-### Acknowledgements
-
-Thanks to [Remy Kabel](https://github.com/RomanovX) who parametrized the build and made it possible for it to be fully automated.  
-Thanks to [Hernan Zhou](https://github.com/LuckyKat) whos [plugin](https://github.com/LuckyKat/cordova-sticker-pack-extension) was a great inspiration.
