@@ -13,26 +13,26 @@ This plugin extends your ios project by parsing and modifying the project.pbxpro
 ### 2. Install the plugin
 * For installing the plugin you must provide the following initial variables: 
 
-#### INTENT_NAME
+#### * INTENT_NAME
 The ID name for the Plugin Intent (eg. "MyAppIntent" 
 
-#### INTENT_BUNDLE_SUFFIX
+#### * INTENT_BUNDLE_SUFFIX
 The Intent's bundle suffix. We suggest using the same string as the INTENT_NAME (eg: "MyAppIntent") 
 
-#### PROVISIONING_PROFILES
+#### * PROVISIONING_PROFILES
 You must provide the App Bundle ID used for the mais project + the INTENT_NAME + the provisioning profile UUID:
 {'com.mycompany.MyApp.MyAppIntent':'e062de98-e4bd-44b6-bf45-75f3b30adaf2'}" 
 
-#### DEVELOPMENT_TEAM
+#### * DEVELOPMENT_TEAM
 The development team string (related to your Apple ID) being used (eg. "84FAZ4VLW6")
 
-#### CERTIFICATE_TYPE
+#### * CERTIFICATE_TYPE
 The certificate type being used (eg. "Apple Development")
 
-#### EXTENSION_NAME
+#### * EXTENSION_NAME
 We also suggest using the same string as the INTENT_NAME (eg. "MyAppIntent")
 
-#### APP_BUNDLE_ID
+#### * APP_BUNDLE_ID
 The Bundle ID being used for the main app (eg. "com.mycompany.MyApp")
 
 
