@@ -14,26 +14,26 @@ This plugin extends your ios project by parsing and modifying the project.pbxpro
 * For installing the plugin you must provide the following initial variables: 
 
 #### * INTENT_NAME
-The ID name for the Plugin Intent (eg. "MyAppIntent" 
+The ID name for the Plugin Intent (eg. INTENT_NAME="MyAppIntent" )
 
 #### * INTENT_BUNDLE_SUFFIX
-The Intent's bundle suffix. We suggest using the same string as the INTENT_NAME (eg: "MyAppIntent") 
+The Intent's bundle suffix. We suggest using the same string as the INTENT_NAME (eg: INTENT_BUNDLE_SUFFIX="MyAppIntent") 
 
 #### * PROVISIONING_PROFILES
 You must provide the App Bundle ID used for the mais project + the INTENT_NAME + the provisioning profile UUID:
-{'com.mycompany.MyApp.MyAppIntent':'e062de98-e4bd-44b6-bf45-75f3b30adaf2'}" 
+PROVISIONING_PROFILES="{'com.mycompany.MyApp.MyAppIntent':'e062de98-e4bd-44b6-bf45-75f3b30adaf2'}" 
 
 #### * DEVELOPMENT_TEAM
-The development team string (related to your Apple ID) being used (eg. "84FAZ4VLW6")
+The development team string (related to your Apple ID) being used (eg. DEVELOPMENT_TEAM="84FAZ4VLW6")
 
 #### * CERTIFICATE_TYPE
-The certificate type being used (eg. "Apple Development")
+The certificate type being used (eg. CERTIFICATE_TYPE="Apple Development")
 
 #### * EXTENSION_NAME
-We also suggest using the same string as the INTENT_NAME (eg. "MyAppIntent")
+We also suggest using the same string as the INTENT_NAME (eg. EXTENSION_NAME="MyAppIntent")
 
 #### * APP_BUNDLE_ID
-The Bundle ID being used for the main app (eg. "com.mycompany.MyApp")
+The Bundle ID being used for the main app (eg. APP_BUNDLE_ID="com.mycompany.MyApp")
 
 
 
