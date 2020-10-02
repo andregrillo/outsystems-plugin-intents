@@ -10,19 +10,8 @@ This plugin extends your ios project by parsing and modifying the project.pbxpro
 * provisioning-profiles.zip
 * Then move the zip file to the "src/ios/provisioning-profiles" folder
 
-* Fill in the fields, making note of the following:
- * Remember the name of the widget
- * Remember the last part of the bundle identifier (the suffix)
-* Enable the `App Groups` entitlement (`Targets > Select your widget > Capabilities`) and name your group: `group.<Bundle-ID of your host app>` (you can use the group to share NSUserDefaults between the Widget and the main App). _Note that you have to add this to your provisioning profile_
-* Implement your widget using `TodayViewController.swift` and `MainInterface.storyboard` (you can add additional source-files too).
-* When done implementing copy the `<Widget name>` folder from `</platforms/ios>` to anywhere tracked by your repository.
-* If your `MainInterface.storyboard` is listed in a sub-older named `Base.lproj`, pull it out of the folder and delete the folder. (there is no handling of variant-groups for different languages)
-* If you want to use an objective-c bridging header you can add it to the folder, just make sure it is named `Header.h` (`Bridging-Header.h` works too but the file won't be listed in XCode because the cordova bridging header has the same name and node-xcode thinks's it's the same file because it's checking the name and not the UUID)
-* If you need to add custom build settings you can use a xcconfig file, the script will add it to the project
-* Every file that is not a `.swift`, `.h`, `.m`, `.plist`, `.entitlements`, `.xcconfig` or `.storyboard` file will be added as a resource file to the project (images, fonts, etc.)
-
 ### 2. Install the plugin
-* `cordova plugin add https://github.com/DavidStrausz/outsystems-plugin-intents.git --save`
+* `cordova plugin add https://github.com/andregrillo/outsystems-plugin-intents.git --nofetch --verbose`
 * This will not modify anything yet because the hooks only run `after_platform_add`
 * You can add variables to your `config.xml` in order to change some of the settings:
 
