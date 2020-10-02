@@ -38,7 +38,8 @@ The Bundle ID being used for the main app (eg. APP_BUNDLE_ID="com.mycompany.MyAp
 
 
 #### Example:
-* For installing`cordova plugin add https://github.com/andregrillo/outsystems-plugin-intents.git` + the initial variables mentioned above.
+* For installing: 
+`cordova plugin add https://github.com/andregrillo/outsystems-plugin-intents.git` + the initial variables mentioned above.
 
 ```
 cordova plugin add https://github.com/andregrillo/outsystems-plugin-intents.git --variable INTENT_NAME="MyAppIntent" --variable INTENT_BUNDLE_SUFFIX="MyAppIntent" --variable PROVISIONING_PROFILES="{'com.mycompany.MyApp.MyAppIntent':'e062de98-e4bd-44b6-bf45-75f3b30adaf2'}" --variable DEVELOPMENT_TEAM="84FAZ4VLW6" --variable CERTIFICATE_TYPE="Apple Development" --variable EXTENSION_NAME="MyAppIntent" --variable APP_BUNDLE_ID="com.mycompany.MyApp"
