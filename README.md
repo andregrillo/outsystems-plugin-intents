@@ -1,10 +1,14 @@
-# Cordova Plugin for adding a Today Widget to an existing iOS Project dynamically
+# Cordova Plugin for adding Intents support to an existing iOS Project dynamically
 
-This plugin extends your existing xcode project by parsing and modifying the project.pbxproj file using [cordova-node-xcode](https://github.com/apache/cordova-node-xcode). The today extension will be added to the XCode-Project everytime a `cordova platform add ios` is done.
+This plugin extends your ios project by parsing and modifying the project.pbxproj file using [cordova-node-xcode](https://github.com/apache/cordova-node-xcode). The Intent extension will be added to the XCode-Project everytime a `cordova platform add ios` is done.
 
 ## Usage
 
-### 1. First of all you have to create a Today Widget yourself using XCode (`Editor > Add target > Today Extension`)
+### 1. Provisioning profiles
+* Create an exclusive new provisioning profile for the ios intent target.
+* Once it's created, download it, rename the file with its own UUID number (preserve the file extension) and zip it with the following name: 
+* provisioning-profiles.zip
+* Then move the zip file to the "src/ios/provisioning-profiles" folder
 
 * Fill in the fields, making note of the following:
  * Remember the name of the widget
